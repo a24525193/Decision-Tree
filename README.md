@@ -45,3 +45,66 @@ from matplotlib import pyplot
 ```
 
 
+
+
+
+## EDA
+
+The data is imported as dataframe, and there is no missing value.
+
+以敘述統計檢查資料分布狀況，
+區分連續型數據跟離散型數據，
+有六個連續型數據，
+對除了time的六個連續型數據檢查是否為常態分布，並做偏態分析，
+
+值在-1~1 之间为正常值， 正的是右偏，負的是左偏，
+有三個偏態明顯的特徵值分別是
+creatinine_phosphokinase : 4.46
+
+serum_creatinine : 4.456
+
+platelets : 1.462
+
+接著分出連續型數據的dataframe實際來看一下連續型數據的分布情況
+
+先看盒鬚圖，可以明顯看出creatinine_phosphokinase,serum_creatinine和platelets的離群值非常多，需要再對此三個特徵值做處理
+
+接著看常態分佈圖，幾乎所有的數據都是有個高峰的，所以整體來說數據不用太多大處理
+
+最後來看全部特徵的相對分布圖，可以看到全部特徵的散點圖跟直方圖
+
+
+## 預處理
+
+對數據的偏態進行處理，對於偏態較嚴重的reatinine_phosphokinase和serum_creatinine，我針對這兩個數據取了對數，對於偏態不大的platelets，我對這個數據做取平方根的處理
+
+
+處理完後偏態數值
+creatinine_phosphokinase log : 0.41400698865657504
+
+serum_creatinine log : 1.583989782127556
+
+platelets sqrt : 0.17868001456234672
+
+
+Check the correlation coefficient of the target value with the heat map, then select the features.
+
+
+
+## Training and Prediction
+
+我刪除了三個特徵值，分別為刪掉 "diabetes","sex", "smoking" 為了減少電腦跑程式的負擔和增加準確度，結果證明準確度增加了0.05
+then X and y are divided into training set and test set at a ratio of 8:2.
+
+Create a Classification. Use sklearn's Decision Tree Classifier package to train the model. Then get the predicted model. Make predictions on testing data.
+
+The prediction results show that precision and F1 score reaches 0.90.
+
+## Create Plot
+
+使用sklearn中的export_graphviz套件，做出決策樹圖表輸出dot檔案，並使用CMD輸入dot -Tpng pred.dot -o pred.png，將dot檔案轉為png檔，就能得到完整的決策樹圖表
+
+再來就是針對建構好的模型和預測結果，對於特徵值的重要程度進行排序
+最重要的特徵是
+Feature: time, Score: 0.527
+
