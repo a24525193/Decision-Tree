@@ -110,7 +110,18 @@ They are "diabetes", "sex", "smoking". In order to reduce the burden of running 
 
 Set the other 9 features to X and 'DEATH_EVENT' to Y. Then X and y are divided into training set and test set at a ratio of 8:2.
 
-Create a Classification. Use sklearn's Decision Tree Classifier package to train the model. Then get the predicted model. Make predictions on testing data.
+Create a Classification. Use sklearn's Decision Tree Classifier package to train the model. 
+
+Set model parameters. The parameter meanings of the function are as follows:
+
+- max_Depth: int or None, optional (default=None) Sets the maximum depth of the decision tree in the decision random forest. The greater the depth, the easier it is to over fit. The recommended depth of the tree is 5-20.
+- max_Features: None, log2, sqrt, when the N feature is less than 50, all
+- Criterion: gini or entropy, the former is Gini coefficient, and the latter is information entropy.
+- min_samples_Leaf: This value limits the minimum number of samples of a leaf node. If the number of a leaf node is less than the number of samples, it will be pruned together with its sibling nodes.
+- min_samples_Split: Set the minimum number of samples for the node. When the number of samples may be less than this value, the node will not be divided.
+- random_state: A random seed, which is used as a parameter in any random class or function to control the random pattern.
+
+Then get the predicted model. Make predictions on testing data.
 
 The prediction results show that precision and F1 score reaches 0.90.
 
@@ -124,5 +135,5 @@ Convert the dot file to the png file to get a complete decision tree plot.
 
 The next step is to rank the importance of features according to the constructed model and prediction results.
 
-The most important feature is 'time', Score: 0.527
+The most important feature is 'time', Score: 0.529
 
