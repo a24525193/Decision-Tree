@@ -48,7 +48,7 @@ from matplotlib import pyplot
 
 
 
-## EDA
+## Exploratory Data Analysis
 
 The data is imported as dataframe, and there is no missing value.
 
@@ -135,5 +135,5 @@ Convert the dot file to the png file to get a complete decision tree plot.
 
 The next step is to rank the importance of features according to the constructed model and prediction results.
 
-The most important feature is 'time', Score: 0.529
+The most important feature is 'time'. Important score: 0.529 (Max : 1)
 
